@@ -8,7 +8,8 @@ setup(
     install_requires=[],
     entry_points={
         'console_scripts': [
-            'jane=jane.interfaces.cli:main'
+            # 'jane=jane.cli:main',
+            'api=jane.api:main'
         ]
     }
 )
