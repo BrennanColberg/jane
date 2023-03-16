@@ -1,5 +1,5 @@
 
-from ..hearts.openai_chat_completion import generate, init_history
+from .hearts.openai_chat_completion import generate, init_history
 
 
 def invoke_tool():
@@ -28,9 +28,3 @@ def main():
     #     else:
     #         print(f"Unexpected response: {response}")
     #         break
-
-    print("Process completed.")
-
-
-if __name__ == "__main__":
-    main()

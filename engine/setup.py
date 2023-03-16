@@ -8,7 +8,7 @@ setup(
     install_requires=[],
     entry_points={
         'console_scripts': [
-            'run=jane.engine.index:main'
+            'jane=jane.interfaces.cli:main'
         ]
     }
 )
