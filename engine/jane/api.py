@@ -2,10 +2,13 @@
 # - POST /step {body: "input"} -> starts a session
 # - POST /step/{session_id} {body: "input"} -> continues a session
 
+from flask_cors import CORS
 from flask import Flask, request, jsonify
 from .engine import step
 import uuid
+
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/step/<session_id>', methods=['POST'])
