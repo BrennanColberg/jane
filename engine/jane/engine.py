@@ -1,4 +1,5 @@
 
+from typing import List, Dict
 from .hearts.openai_chat_completion import generate, init_history
 
 
@@ -6,25 +7,14 @@ def invoke_tool():
     return
 
 
-def main():
-    history = init_history()
-    while (True):
-        user_input = input('You: ')
-        response = generate(history, user_input)
-        print(f"Jane: {response}")
-        history += [{"role": "assistant", "content": response}]
+History = List[Dict[str, str]]
+history = init_history()
 
-    # initial_prompt = f"Digital Personal Assistant: {user_input}\n"
 
-    # prompt = initial_prompt
-    # while True:
-    #     response = generate(prompt)
-    #     if response.lower() == "done":
-    #         break
-    #     elif response.startswith("use tool:"):
-    #         tool_name = response[len("use tool:"):].strip()
-    #         tool_output = invoke_tool(tool_name)
-    #         prompt += f"\n{tool_output}\n"
-    #     else:
-    #         print(f"Unexpected response: {response}")
-    #         break
+def step(user_input: str) -> str:
+    """takes in input, puts out response/output after doing an evaluation step (including tool invocation)"""
+    global history
+    response = generate(history, user_input)
+    history += [{"role": "assistant", "content": response}]
+    # TODO loop and invoke tools if appropriate here
+    return response
