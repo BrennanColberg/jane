@@ -1,5 +1,5 @@
 from typing import Tuple
-from ..history import History
+from ..types import History
 import openai
 openai.api_key_path = "openai_api_key.txt"
 

@@ -1,19 +1,18 @@
 
 from typing import Tuple
-from .history import History
-from .hearts.openai_chat_completion import generate, init_history
+from .history import get_history, save_history
+from .types import History
+from .hearts.openai_chat_completion import generate
 
 
 def invoke_tool():
     return
 
 
-history = init_history()
-
-
-def step(user_input: str) -> Tuple[str, History]:
+def step(session_id: str, user_input: str) -> Tuple[str, History]:
     """takes in input, puts out response/output after doing an evaluation step (including tool invocation)"""
-    global history
+    history = get_history(session_id)
     response, history = generate(user_input, history)
     # TODO loop and invoke tools if appropriate here
+    save_history(session_id, history)
     return response, history

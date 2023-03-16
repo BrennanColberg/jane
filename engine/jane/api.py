@@ -5,11 +5,11 @@ from .engine import step
 app = Flask(__name__)
 
 
-@app.route('/step', methods=['POST'])
-def step_endpoint():
+@app.route('/step/<session_id>', methods=['POST'])
+def step_endpoint(session_id):
     input_string = request.get_data(as_text=True)
-    output, history = step(input_string)
-    return jsonify({"output": output, "history": history})
+    output, history = step(session_id, input_string)
+    return jsonify({"output": output, "history": history, "session_id": session_id})
 
 
 # basic ping endpoint
