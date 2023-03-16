@@ -1,14 +1,18 @@
+from typing import Tuple
+from ..history import History
 import openai
 openai.api_key_path = "openai_api_key.txt"
 
 
-def init_history() -> list[dict[str, str]]:
+def init_history() -> History:
     return [{"role": "system", "content": "you are a helpful, intelligent, and fallible digital personal assistant"}]
 
 
-def generate(history: list[dict[str, str]], input: str) -> str:
+def generate(input: str, history: History) -> Tuple[str, History]:
+    history += [{"role": "user", "content": input}]
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=history + [{"role": "user", "content": input}]
+        messages=history
     )
-    return completion.choices[0].message.content
+    history += [completion.choices[0].message]
+    return history[-1].content, history

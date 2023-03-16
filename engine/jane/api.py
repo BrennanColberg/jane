@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/step', methods=['POST'])
 def step_endpoint():
     data = request.get_json(force=True)
-    input_string = data.get('input_string', '')
+    input_string = data.get('input', '')
     output, history = step(input_string)
     return jsonify({"output": output, "history": history})
 
