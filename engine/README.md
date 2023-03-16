@@ -1,23 +1,13 @@
-# Jane
+How does the engine work?
 
-## the world's open-source digital personal assistant
+1.  takes an input (via API)
+2.  generates initial prompt (or retrieves session history)
+3.  feed prompt into LLM
+4.  return LLM output
 
-- named after the character from Orson Scott Card's Enderverse series
-- planned architecture: ![planned architecture](https://brennancolbergdotcom.s3.us-west-1.amazonaws.com/images/writing/digital-personal-assistant/dpa-architecture.png)
-- idea / writeup: https://brennancolberg.com/writing/digital-personal-assistants
+TODO change ending to:
 
-## tech stack
-
-- build with Docker
-- using Python for now
-  - may switch to TypeScript if my unfamiliarity is limiting
-
-## contribution policy
-
-- write up the rationale for your contribution, make a PR, I will be reasonable
-- I am open to contributions, not trying to hog credit/etc, just want this built
-- PLEASE pr any unambiguous bugfixes you find
-
-## copyright
-
-don't build closed-source for-profit DPAs on top of the code you find here
+4.  if LLM "done" return
+5.  else LLM called a tool, so invoke the tool
+6.        append tool's output to prompt
+7.        GOTO 3
