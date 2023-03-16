@@ -1,4 +1,6 @@
 # all interfaces go through an HTTP API
+# - POST /step {body: "input"} -> starts a session
+# - POST /step/{session_id} {body: "input"} -> continues a session
 
 from flask import Flask, request, jsonify
 from .engine import step
