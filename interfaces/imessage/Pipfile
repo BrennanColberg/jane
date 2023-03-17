@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 py-applescript = "*"
+jane-imessage-interface = {editable = true, path = "."}
 
 [dev-packages]
 

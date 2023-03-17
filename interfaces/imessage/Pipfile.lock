@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2e65fc3c9298f74167a8b7bcebc9f4713e5da6b0f896bf338781615e6869ff76"
+            "sha256": "b0cf883994c2a5fd7dab95416907c4c863ec2d7d782f0417ef483851a2451aed"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -17,6 +17,10 @@
         ]
     },
     "default": {
+        "jane-imessage-interface": {
+            "editable": true,
+            "path": "."
+        },
         "py-applescript": {
             "hashes": [
                 "sha256:eb21dfc6e845a40be602372a5c3d6317f7ad3c999c2c355a00d1a19bdb1d57c0",

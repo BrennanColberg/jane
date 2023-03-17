@@ -20,7 +20,3 @@ send_imessage_applescript = AppleScript(f'''
 def send_imessage(recipient_address, message):
     """send iMessage"""
     send_imessage_applescript.run(recipient_address, message)
-
-
-# receive imessage
-# (I think this means polling)
