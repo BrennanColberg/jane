@@ -1,7 +1,5 @@
 from applescript import AppleScript
-import sqlite3
-
-connection = sqlite3.connect('~/Library/Messages/chat.db')
+import os
 
 send_imessage_applescript = AppleScript(f'''
     on run argv
@@ -17,6 +15,10 @@ send_imessage_applescript = AppleScript(f'''
     ''')
 
 
-def send_imessage(recipient_address, message):
-    """send iMessage"""
+def send_message(recipient_address, message):
+    print("sending message to", recipient_address, ": ", message)
     send_imessage_applescript.run(recipient_address, message)
+
+
+def send_message_to_user(message: str):
+    send_message(os.environ["USER_ADDRESS"], message)

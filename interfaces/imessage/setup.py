@@ -8,7 +8,7 @@ setup(
     install_requires=[],
     entry_points={
         'console_scripts': [
-            "poll=src.poller:main"
+            "poll=src.main:poll"
         ]
     }
 )
