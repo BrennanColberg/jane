@@ -31,7 +31,7 @@ def _message_from_row(row) -> Message:
     return message
 
 
-def get_recent_messages(num: int = 10) -> list[Message]:
+def get_recent_messages(num: int = 16) -> list[Message]:
     connection = sqlite3.connect(imessage_db_path)
     cursor = connection.cursor()
     cursor.execute("""
@@ -39,8 +39,8 @@ def get_recent_messages(num: int = 10) -> list[Message]:
         FROM message m
         LEFT JOIN handle h ON m.handle_id = h.ROWID
         ORDER BY m.date DESC
-        LIMIT 5;
-        """)
+        LIMIT :num
+        """, {"num": num})
     rows = cursor.fetchall()
     connection.close()
     return [_message_from_row(row) for row in rows]
@@ -57,11 +57,21 @@ def init_seen_message_ids():
 
 
 def get_new_messages() -> list[Message]:
+    """Returns a list of new messages since the last call to this function.
+       Messages are in chronological order."""
     global seen_message_ids
     if (seen_message_ids is None):
         init_seen_message_ids()
     new_messages = [m for m in get_recent_messages()
                     if m.id not in seen_message_ids]
+    new_messages.reverse()  # chronological order
     for message in new_messages:
         seen_message_ids.add(message.id)
     return new_messages
+
+
+def get_new_messages_from_user() -> list[str]:
+    """Returns a list of new messages from the user since the last call to this
+       function. Messages are in chronological order."""
+    return [m.text for m in get_new_messages()
+            if m.from_address == os.environ['USER_ADDRESS']]
