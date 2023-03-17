@@ -31,7 +31,7 @@ def _message_from_row(row) -> Message:
     return message
 
 
-def get_recent_messages(num: int) -> list[Message]:
+def get_recent_messages(num: int = 10) -> list[Message]:
     connection = sqlite3.connect(imessage_db_path)
     cursor = connection.cursor()
     cursor.execute("""
@@ -39,8 +39,8 @@ def get_recent_messages(num: int) -> list[Message]:
         FROM message m
         LEFT JOIN handle h ON m.handle_id = h.ROWID
         ORDER BY m.date DESC
-        LIMIT ?;
-        """, (num))
+        LIMIT 5;
+        """)
     rows = cursor.fetchall()
     connection.close()
     return [_message_from_row(row) for row in rows]

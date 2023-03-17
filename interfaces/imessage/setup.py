@@ -8,8 +8,7 @@ setup(
     install_requires=[],
     entry_points={
         'console_scripts': [
-            # 'jane=jane.cli:main',
-            # 'api=jane.api:main'
+            "poll=src.poller:main"
         ]
     }
 )

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b0cf883994c2a5fd7dab95416907c4c863ec2d7d782f0417ef483851a2451aed"
+            "sha256": "c94e06e98cdbd1271e0e6a67cbe5c13d35c8c5390953d097c349d5133399c1f8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -20,6 +20,13 @@
         "jane-imessage-interface": {
             "editable": true,
             "path": "."
+        },
+        "polling": {
+            "hashes": [
+                "sha256:3afd62320c99b725c70f379964bf548b302fc7f04d4604e6c315d9012309cc9a"
+            ],
+            "index": "pypi",
+            "version": "==0.3.2"
         },
         "py-applescript": {
             "hashes": [
