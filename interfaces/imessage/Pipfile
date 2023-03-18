@@ -8,6 +8,7 @@ py-applescript = "*"
 polling = "*"
 jane-imessage-interface = {editable = true, path = "."}
 python-dotenv = "*"
+requests = "*"
 
 [dev-packages]
 

@@ -1,11 +1,22 @@
-
 import polling
 from .receive import get_new_messages_from_user
 from .send import send_message_to_user
+import requests
+import os
+
+
+session_id = None
+api_root = os.environ["API_ROOT"]
 
 
 def handle_new_message_from_user(new_message: str):
-    send_message_to_user("echo: " + new_message)
+    global session_id
+    api_endpoint = "/step" if session_id is None else f"/step/{session_id}"
+    response = requests.post(api_root + api_endpoint, data=new_message)
+    response_json = response.json()
+    session_id = response_json["session_id"]
+    output = response_json["output"]
+    send_message_to_user(output)
 
 
 def check_for_new_messages_from_user():
