@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0b20c77ef47279b931502c0bc66409f8bbd496a823e15d910ccf5c42d22a2138"
+            "sha256": "30da95faba9532ea475f4ee862971b6091983761ce1eb0798ee3cffc81d9af0d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -353,7 +353,7 @@
         },
         "jane": {
             "editable": true,
-            "file": "file:///Users/brennancolberg/Code/jane/engine"
+            "path": "."
         },
         "jinja2": {
             "hashes": [
