@@ -11,7 +11,7 @@ def init_history() -> History:
 def generate(input: str, history: History) -> Tuple[str, History]:
     history += [{"role": "user", "content": input}]
     completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=history
     )
     history += [completion.choices[0].message]
