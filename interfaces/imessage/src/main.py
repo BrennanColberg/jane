@@ -10,13 +10,17 @@ api_root = os.environ["API_ROOT"]
 
 
 def handle_new_message_from_user(new_message: str):
-    global session_id
-    api_endpoint = "/step" if session_id is None else f"/step/{session_id}"
-    response = requests.post(api_root + api_endpoint, data=new_message)
-    response_json = response.json()
-    session_id = response_json["session_id"]
-    output = response_json["output"]
-    send_message_to_user(output)
+    try:
+        global session_id
+        api_endpoint = "/step" if session_id is None else f"/step/{session_id}"
+        response = requests.post(api_root + api_endpoint, data=new_message)
+        response_json = response.json()
+        session_id = response_json["session_id"]
+        output = response_json["output"]
+        send_message_to_user(output)
+    except Exception as e:
+        print("Error handling new message from user: ", e)
+        send_message_to_user("❌ Error while responding:" + "\n\n" + str(e))
 
 
 def check_for_new_messages_from_user():
